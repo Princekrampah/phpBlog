@@ -78,3 +78,28 @@ function createNewUser($username, $password, $email, $connection)
     header("location: ../login.php");
     exit();
 }
+
+
+
+function authenticated($username, $password, $connection){
+    $userdata = takenUsername($username, $username, $connection);
+
+    if($userdata === false){
+        header("location: ../login.php?error=InvalidUsername");
+        exit();
+    }
+
+    $hashed = userdata['password'];
+
+    if (password_verify($password, $hashed)){
+        session_start();
+        $_SESSION['userid'] = userdata['ID'];
+        $_SESSION['username'] = userdata['username'];
+        header("location: ../index.php?msg=loginin");
+        exit();
+    }
+    else{
+        header("location: ../login.php?error=invalidlogindata");
+        exit();
+    }
+}

@@ -23,10 +23,27 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php">Sign Up</a>
+                            <?php
+
+                            if (isset($_SESSION['username'])) {
+                                echo  '<a class="nav-link" href="index.php">Profile Page</a>';
+                            } else {
+                                echo  '<a class="nav-link" href="index.php">Sign Up</a>';
+                            }
+
+                            ?>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="login.php">Login</a>
+                            <?php
+
+                            if (isset($_SESSION['username'])) {
+                                echo  '<a class="nav-link" href="login.php">Logout</a>';
+                            } else {
+                                echo  '<a class="nav-link" href="login.php">Login</a>';
+                            }
+
+                            ?>
+
                         </li>
                     </ul>
                 </div>

@@ -15,7 +15,7 @@ include_once 'header.php';
                 <label for="password_id" class="form-label">Paasword</label>
                 <input class="form-control mb-3" type="password" placeholder="Password" id="password_id" aria-label="default input example" name="password" />
 
-                <input type="submit" class="btn btn-outline-info" />
+                <button type="submit" class="btn btn-outline-info">Login</button>
             </form>
         </fieldset>
     </div>

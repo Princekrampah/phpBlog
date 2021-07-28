@@ -13,9 +13,9 @@ if (isset($_POST['submit'])) {
     if (emptyFields($username, $email, $password, $confirm_password)) {
         header("location: ../index.php?error=emptyFields");
         exit();
-    // } else if (invalidUsername($username)) {
-    //     header("location: ../index.php?error=InvalidUsername");
-    //     exit();
+    } else if (invalidUsername($username)) {
+        header("location: ../index.php?error=InvalidUsername");
+        exit();
     } else if (invalidEmail($email)) {
         header("location: ../index.php?error=invalidEmail");
         exit();
