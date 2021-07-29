@@ -14,7 +14,7 @@ include_once 'header.php';
             </div>
 
             <!-- change the action part -->
-            <form class="form" action="includes/signup.inc.php" method="POST">
+            <form class="form" action="includes/create_post.inc.php" method="POST">
                 <label for="post_title" class="form-label">Post Title</label>
                 <input class="form-control mb-3" type="text" placeholder="Post Title" id="post_title" aria-label="default input example" name="post_title" />
 

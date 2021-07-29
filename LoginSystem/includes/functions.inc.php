@@ -93,7 +93,7 @@ function authenticated($username, $password, $connection)
 
     if (password_verify($password, $userdata["password"])) {
         session_start();
-        $_SESSION['userid']   = $userdata['ID'];
+        $_SESSION['user_id']  = $userdata['ID'];
         $_SESSION['username'] = $userdata['username'];
         header("location: ../index.php");
         exit();
@@ -101,4 +101,33 @@ function authenticated($username, $password, $connection)
         header("location: ../login.php?error=invalidlogindata");
         exit();
     }
+}
+
+
+function create_new_post($title, $content, $user_id, $connection)
+{
+    $query = "INSERT INTO Post(title, content, author) VALUES(:title, :content, :user_id)";
+
+    $statement = $connection->prepare($query);
+    $statement->bindValue(":title", $title, PDO::PARAM_STR);
+    $statement->bindValue(":content", $content, PDO::PARAM_STR);
+    $statement->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+
+    $statement->execute();
+
+    header("location: ../index.php?msg=Success");
+    exit();
+}
+
+
+function get_all_posts($connection)
+{
+    $query = "SELECT p.ID, u.username as author, u.email, p.title, p.content, p.date_posted FROM Post as p JOIN User as u ON p.author  = u.ID;";
+
+    $statement = $connection->prepare($query);
+
+    $statement->execute();
+
+    $rows = $statement->fetchall(PDO::FETCH_ASSOC);
+    return $rows;
 }
