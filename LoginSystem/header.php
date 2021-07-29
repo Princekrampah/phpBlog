@@ -16,7 +16,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Logino</a>
+                <a class="navbar-brand" href="./index.php">Logino</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -25,10 +25,13 @@
                         <li class="nav-item">
                             <?php
 
+                            session_start();
+
                             if (isset($_SESSION['username'])) {
-                                echo  '<a class="nav-link" href="index.php">Profile Page</a>';
+                                echo  '<a class="nav-link" href="profile.php">Profile Page</a>';
+                                echo  '<li class="nav-item"> <a class="nav-link" href="create_post.php">Creat Post Page</a> </li>';
                             } else {
-                                echo  '<a class="nav-link" href="index.php">Sign Up</a>';
+                                echo  '<a class="nav-link" href="signup.php">Sign Up</a>';
                             }
 
                             ?>
@@ -37,7 +40,7 @@
                             <?php
 
                             if (isset($_SESSION['username'])) {
-                                echo  '<a class="nav-link" href="login.php">Logout</a>';
+                                echo  '<a class="nav-link" href="logout.php">Logout</a>';
                             } else {
                                 echo  '<a class="nav-link" href="login.php">Login</a>';
                             }

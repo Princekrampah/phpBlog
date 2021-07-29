@@ -54,7 +54,7 @@ function takenUsername($username, $email, $connection)
     $statement->bindValue(":email", $email, PDO::PARAM_STR);
     $statement->execute();
 
-    if ($row = $statement->fetch()) {
+    if ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
         return $row;
     }
 
@@ -81,24 +81,23 @@ function createNewUser($username, $password, $email, $connection)
 
 
 
-function authenticated($username, $password, $connection){
+function authenticated($username, $password, $connection)
+{
     $userdata = takenUsername($username, $username, $connection);
 
-    if($userdata === false){
+    if ($userdata === false) {
         header("location: ../login.php?error=InvalidUsername");
         exit();
     }
 
-    $hashed = userdata['password'];
 
-    if (password_verify($password, $hashed)){
+    if (password_verify($password, $userdata["password"])) {
         session_start();
-        $_SESSION['userid'] = userdata['ID'];
-        $_SESSION['username'] = userdata['username'];
-        header("location: ../index.php?msg=loginin");
+        $_SESSION['userid']   = $userdata['ID'];
+        $_SESSION['username'] = $userdata['username'];
+        header("location: ../index.php");
         exit();
-    }
-    else{
+    } else {
         header("location: ../login.php?error=invalidlogindata");
         exit();
     }

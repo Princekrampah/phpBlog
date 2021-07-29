@@ -3,35 +3,64 @@
 include_once 'header.php';
 ?>
 
-<!-- main content -->
-<main class="container">
+
+<div class="container-fluid">
   <div class="row d-flex justify-content-center mt-4">
-    <fieldset class="col-md-6">
-      <!-- change the action part -->
-      <form class="form" action="includes/signup.inc.php" method="POST">
-        <label for="username_id" class="form-label">Username</label>
-        <input class="form-control mb-3" type="text" placeholder="Username" id="username_id" aria-label="default input example" name="username" />
-
-        <label for="email_id" class="form-label">Email</label>
-        <input class="form-control mb-3" type="email" placeholder="Email" id="email_id" aria-label="default input example" name="email" />
-
-        <label for="password_id" class="form-label">Password</label>
-        <input class="form-control mb-3" type="password" placeholder="Password" id="password_id" aria-label="default input example" name="password" />
-
-        <label for="password_repeat" class="form-label">Comfirm Pasword</label>
-        <input class="form-control mb-3" type="password" placeholder="Password" id="password_repeat" aria-label="default input example" name="confirm_password" />
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
 
 
-        <button type="submit" name="submit" class="btn btn-outline-info">Sign Up</button>
-      </form>
-    </fieldset>
+      <div style="color: #444;">
+        <h1>Home Page</h1>
+      </div>
+
+      <?php
+      // test array
+
+      $posts = array(
+        array(
+          "title" => "Post One",
+          "content" => "Post one content",
+          "author" => "John Doe"
+        ),
+
+        array(
+          "title" => "Post two",
+          "content" => "Post two content",
+          "author" => "Janet Doe"
+        )
+      )
+
+      ?>
+
+      <!-- loop for all the posts -->
+      <?php foreach ($posts as $post) : ?>
+
+        <div class="card m-4" style="width: 100%;">
+          <div class="card-body">
+            <h5 class="card-title"><?= $post['title'] ?></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><?= $post['author'] ?></h6>
+            <p class="card-text"><?= $post['content'] ?></p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
+        </div>
+      <?php endforeach; ?>
+
+    </div>
+
+
+
+
+    <div class="col-md-3"></div>
   </div>
-</main>
+
+</div>
+
+
+
 
 <!-- footer script -->
 <?php
 include_once 'footer.php';
 ?>
-</body>
-
-</html>

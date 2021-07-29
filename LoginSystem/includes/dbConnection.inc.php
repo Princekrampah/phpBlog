@@ -16,7 +16,7 @@ $connection = null;
 
 try {
     $connection = new PDO($dataSource, $USERNAME, $PASSWORD, $settings);
-    echo "Connection established";
+    // echo "Connection established";
 } catch (PDOException $ex) {
     $connection = null;
     echo "[Error] " . $ex->getMessage();
